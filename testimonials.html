@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Témoignages - AECDD_Ongd</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .fade-in { animation: fadeIn 0.8s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .slide-in-left { animation: slideInLeft 0.8s ease-out; }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        .slide-in-right { animation: slideInRight 0.8s ease-out; }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900 transition-colors duration-300" x-data="{ darkMode: false, mobileMenu: false }" :class="{ 'dark': darkMode }">
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 transition-all duration-300">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-heart text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900 dark:text-white">AECDD_Ongd</h1>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Solidarité & Développement</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Accueil</a>
+                    <a href="about.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">À Propos</a>
+                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Services</a>
+                    <a href="projects.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projets</a>
+                    <a href="testimonials.html" class="text-blue-600 dark:text-blue-400 font-semibold">Témoignages</a>
+                    <a href="contact.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
+                    <a href="donate.html" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300">Faire un Don</a>
+                </div>
+
+                <!-- Dark Mode Toggle & Mobile Menu -->
+                <div class="flex items-center space-x-4">
+                    <button @click="darkMode = !darkMode" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon" x-show="!darkMode"></i>
+                        <i class="fas fa-sun" x-show="darkMode"></i>
+                    </button>
+                    <button @click="mobileMenu = !mobileMenu" class="lg:hidden p-2 rounded-md text-gray-600 dark:text-gray-400">
+                        <i class="fas fa-bars" x-show="!mobileMenu"></i>
+                        <i class="fas fa-times" x-show="mobileMenu"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div x-show="mobileMenu" x-transition class="lg:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+                <div class="flex flex-col space-y-4 mt-4">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Accueil</a>
+                    <a href="about.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">À Propos</a>
+                    <a href="services.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Services</a>
+                    <a href="projects.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projets</a>
+                    <a href="testimonials.html" class="text-blue-600 dark:text-blue-400 font-semibold">Témoignages</a>
+                    <a href="contact.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
+                    <a href="donate.html" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full text-center">Faire un Don</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-[60vh] flex items-center relative overflow-hidden pt-20">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center text-white">
+                <h1 class="text-5xl lg:text-6xl font-bold mb-6 slide-in-left">
+                    <span class="text-yellow-300">Témoignages</span> de Nos Bénéficiaires
+                </h1>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto slide-in-right">
+                    Découvrez les histoires inspirantes de transformation et d'espoir de ceux que nous accompagnons
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Testimonial -->
+    <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 lg:p-12 border border-blue-100 dark:border-gray-600">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div class="slide-in-left">
+                            <div class="relative">
+                                <img src="https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Marie Kabila" class="rounded-2xl shadow-2xl w-full h-80 object-cover">
+                                <div class="absolute -bottom-4 -right-4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg">
+                                    <div class="flex items-center space-x-2">
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide-in-right">
+                            <div class="mb-6">
+                                <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-4 py-2 rounded-full text-sm font-semibold">
+                                    Témoignage Vedette
+                                </span>
+                            </div>
+                            <blockquote class="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-6 leading-relaxed">
+                                "Grâce à AECDD_Ongd, j'ai appris la couture et aujourd'hui je peux subvenir aux besoins de mes enfants. Cette formation a changé ma vie."
+                            </blockquote>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white font-bold text-xl">MK</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-gray-900 dark:text-white">Marie Kabila</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">Bénéficiaire - Formation Couture</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-500">Mère de 3 enfants</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Grid -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                    Histoires de <span class="gradient-text">Réussite</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Chaque témoignage raconte une histoire unique de transformation et d'espoir
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">FN</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white">Furaha Nyota</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Veuve, 2 enfants</p>
+                        </div>
+                    </div>
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote class="text-gray-700 dark:text-gray-300 mb-6 italic">
+                        "Après avoir perdu mon mari, je ne savais plus comment nourrir mes enfants. Le programme de formation m'a redonné espoir et dignité."
+                    </blockquote>
+                    <div class="text-sm text-gray-500 dark:text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>Formation terminée en 2024
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">GS</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white">Grace Sifa</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Jeune mère, 19 ans</p>
+                        </div>
+                    </div>
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote class="text-gray-700 dark:text-gray-300 mb-6 italic">
+                        "J'étais très jeune quand j'ai eu mon bébé. AECDD_Ongd m'a aidée à apprendre un métier et à devenir autonome."
+                    </blockquote>
+                    <div class="text-sm text-gray-500 dark:text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>En formation actuellement
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">EM</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white">Esperance Mwiza</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Déplacée interne</p>
+                        </div>
+                    </div>
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote class="text-gray-700 dark:text-gray-300 mb-6 italic">
+                        "Quand nous avons fui notre village, nous avons tout perdu. Cette organisation nous a redonné une nouvelle chance de recommencer."
+                    </blockquote>
+                    <div class="text-sm text-gray-500 dark:text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>Accompagnement social en cours
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">JM</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white">Jolie Mwamini</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Orpheline, 17 ans</p>
+                        </div>
+                    </div>
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote class="text-gray-700 dark:text-gray-300 mb-6 italic">
+                        "Après la mort de mes parents, je pensais que mon avenir était sombre. Maintenant, j'ai des compétences et de l'espoir."
+                    </blockquote>
+                    <div class="text-sm text-gray-500 dark:text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>Formation en cours
+                    </div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">NK</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white">Neema Kavira</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Mère célibataire</p>
+                        </div>
+                    </div>
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote class="text-gray-700 dark:text-gray-300 mb-6 italic">
+                        "L'accompagnement psychosocial m'a aidée à surmonter mes traumatismes et à retrouver confiance en moi."
+                    </blockquote>
+                    <div class="text-sm text-gray-500 dark:text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>Suivi terminé avec succès
+                    </div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">AM</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 dark:text-white">Amani Mukamana</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Retournée, 4 enfants</p>
+                        </div>
+                    </div>
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote class="text-gray-700 dark:text-gray-300 mb-6 italic">
+                        "De retour au pays après des années d'exil, AECDD_Ongd nous a aidés à nous réintégrer dans la communauté."
+                    </blockquote>
+                    <div class="text-sm text-gray-500 dark:text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>Réintégration réussie
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Stats -->
+    <section class="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                    Impact <span class="gradient-text">Mesurable</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Des chiffres qui témoignent de notre impact positif sur les vies
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center fade-in">
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-smile text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">95%</h3>
+                    <p class="text-gray-600 dark:text-gray-400 font-semibold mb-2">Satisfaction</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-500">Taux de satisfaction des bénéficiaires</p>
+                </div>
+
+                <div class="text-center fade-in" style="animation-delay: 0.2s;">
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chart-line text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">80%</h3>
+                    <p class="text-gray-600 dark:text-gray-400 font-semibold mb-2">Autonomisation</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-500">Bénéficiaires devenus autonomes</p>
+                </div>
+
+                <div class="text-center fade-in" style="animation-delay: 0.4s;">
+                    <div class="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-handshake text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">100%</h3>
+                    <p class="text-gray-600 dark:text-gray-400 font-semibold mb-2">Recommandation</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-500">Recommanderaient nos services</p>
+                </div>
+
+                <div class="text-center fade-in" style="animation-delay: 0.6s;">
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-heart text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">57+</h3>
+                    <p class="text-gray-600 dark:text-gray-400 font-semibold mb-2">Vies Transformées</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-500">Bénéficiaires accompagnés</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Testimonials -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                    Témoignages <span class="gradient-text">Vidéo</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Écoutez directement nos bénéficiaires raconter leur parcours
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 relative flex items-center justify-center">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+                            <i class="fas fa-play text-white text-xl"></i>
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="font-semibold">Marie Kabila</p>
+                            <p class="text-sm opacity-80">3:45</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-900 dark:text-white mb-2">Mon parcours vers l'autonomie</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            Marie raconte comment la formation en couture a transformé sa vie et celle de ses enfants.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 relative flex items-center justify-center">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+                            <i class="fas fa-play text-white text-xl"></i>
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="font-semibold">Grace Sifa</p>
+                            <p class="text-sm opacity-80">2:30</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-900 dark:text-white mb-2">Une seconde chance</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            Grace partage son expérience de jeune mère et comment elle a retrouvé espoir.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-700">
+                    <div class="h-48 bg-gradient-to-br from-orange-500 to-red-600 relative flex items-center justify-center">
+                        <div class="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+                            <i class="fas fa-play text-white text-xl"></i>
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <p class="font-semibold">Esperance Mwiza</p>
+                            <p class="text-sm opacity-80">4:12</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-gray-900 dark:text-white mb-2">Reconstruire après l'exil</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            Esperance explique comment elle a reconstruit sa vie après avoir tout perdu.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center text-white">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                    Votre Histoire Peut Commencer Aujourd'hui
+                </h2>
+                <p class="text-xl mb-8 text-gray-200 max-w-3xl mx-auto">
+                    Rejoignez nos programmes ou soutenez notre mission pour créer plus d'histoires de réussite
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="bg-yellow-500 hover:bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        <i class="fas fa-user-plus mr-2"></i>Devenir Bénéficiaire
+                    </a>
+                    <a href="donate.html" class="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300">
+                        <i class="fas fa-heart mr-2"></i>Soutenir Notre Cause
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-heart text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">AECDD_Ongd</h3>
+                            <p class="text-gray-400 text-sm">Solidarité & Développement</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Organisation caritative de droit congolais œuvrant pour l'autonomisation des communautés vulnérables.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-blue-400 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Navigation</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Accueil</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">À Propos</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-white transition-colors">Projets</a></li>
+                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white transition-colors">Témoignages</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Formation Couture</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Accompagnement Social</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Développement Durable</a></li>
+                        <li><a href="donate.html" class="text-gray-400 hover:text-white transition-colors">Faire un Don</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Contact</h4>
+                    <div class="space-y-3">
+                        <p class="text-gray-400 flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            aecddrdc@gmail.com
+                        </p>
+                        <p class="text-gray-400 flex items-center">
+                            <i class="fas fa-phone mr-3"></i>
+                            +243 995 552 975
+                        </p>
+                        <p class="text-gray-400 flex items-center">
+                            <i class="fas fa-mobile-alt mr-3"></i>
+                            +243 990 928 081
+                        </p>
+                        <p class="text-gray-400 flex items-center">
+                            <i class="fas fa-university mr-3"></i>
+                            EQUITY BCDC: 288200114178521
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2025 AECDD_Ongd. Tous droits réservés. | ARRÊTÉ PROVINCIAL N°01/ES/047/CAB/GP-NK/2025
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 invisible hover:scale-110 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Back to top functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.querySelectorAll('.card-hover, .fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
