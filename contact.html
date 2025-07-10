@@ -46,9 +46,15 @@
                     <a href="testimonials.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Témoignages</a>
                     <a href="contact.html" class="text-blue-600 dark:text-blue-400 font-semibold">Contact</a>
                     <a href="donate.html" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300">Faire un Don</a>
-                </div>
+                </div>               
 
-                <!-- Mdark -->
+                <!-- Dark Mode Toggle & Mobile Menu -->
+                <div class="flex items-center space-x-4">
+                    <button @click="mobileMenu = !mobileMenu" class="lg:hidden p-2 rounded-md text-gray-600 dark:text-gray-400">
+                        <i class="fas fa-bars" x-show="!mobileMenu"></i>
+                        <i class="fas fa-times" x-show="mobileMenu"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Mobile Menu -->
